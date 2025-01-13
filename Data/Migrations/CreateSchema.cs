@@ -15,9 +15,8 @@ namespace Animals_Web.Data.Migrations
 
         public override void Up()
         {
-            Create.Table("users")
+            Create.Table("animals")
               .WithColumn("Id").AsInt32().PrimaryKey().Identity()
-              .WithColumn("Types").AsString(130).NotNullable()
               .WithColumn("Name").AsString(130).NotNullable()
               .WithColumn("Weight").AsDouble().NotNullable()
               .WithColumn("Country").AsString(130).NotNullable()

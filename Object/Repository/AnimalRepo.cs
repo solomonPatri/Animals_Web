@@ -35,7 +35,7 @@ namespace Animals_Web.Object.Repository
 
             public async Task<List<Animal>> GetUsernameNameStartB()
             {
-                return await _appDbContext.Animals.Where(u => u.Name.Contains("B%"))
+                return await _appDbContext.Animals.Where(u => u.Name.StartsWith("B"))
                     .ToListAsync();
 
 

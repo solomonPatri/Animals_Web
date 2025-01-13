@@ -17,24 +17,20 @@ namespace Animals_Web.Object
         public int Id { get; set; }
 
         [Required]
-        [Column("Types")]
-        public string Types;
-
-        [Required]
-        [Column ("Name")]
-        public string Name;
+        [Column("Name")]
+        public string Name { get; set; }
 
         [Required]
         [Column("Weight")]
-        public double Weight;
+        public double Weight { get; set; }
 
         [Required]
         [Column("Country")]
-        public string Country;
+        public string Country { get; set; }
 
         [Required]
         [Column("Age")]
-        public int Age;
+        public int Age { get; set; }
 
 
 

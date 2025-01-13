@@ -3,7 +3,7 @@ using FluentMigrator;
 
 namespace Animals_Web.Data.Migrations
 {
-    [Migration(1112025)]
+    [Migration(11112025)]
     public class TestMigrate:Migration
     {
         public override void Down()
@@ -13,7 +13,7 @@ namespace Animals_Web.Data.Migrations
 
         public override void Up()
         {
-            Execute.Script(@"Data/Scripts/data.sql");
+            Execute.Script(@"Data/scripts/data.sql");
         }
 
 
