@@ -1,4 +1,5 @@
 ﻿using Animals_Web.Object;
+using Animals_Web.Object.Dtos;
 using Animals_Web.Object.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,64 +31,21 @@ namespace Animals_Web.Object
 
         }
 
-        [HttpGet("AgeUnder20")]
-
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimalsUnderAge20()
-        {
-            var animals = await _animalRepo.GetAnimalsUnderAge20();
-
-            return Ok(animals);
-
-
-
-
-        }
-
-
-        
-        [HttpGet("GetUsernameNameStartB")]
-
-        public async Task<ActionResult<IEnumerable<Animal>>> GetUsernameNameStartB()
-        {
-            var animals = await _animalRepo.GetUsernameNameStartB();
-
-            return Ok(animals);
-
-
-        }
-
-        [HttpGet("GetIdNrPar")]
-
-        public async Task<ActionResult<IEnumerable<Animal>>> GetIdNrPar()
+        [HttpPost("create")]
+        public async Task<ActionResult<CreateAnimalResponse>> CreateAnimal([FromBody]CreateAnimalRequest createAnimalRequest)
         {
 
-            var animals = await _animalRepo.GetIdNrPar();
+            CreateAnimalResponse create = await _animalRepo.CreateAnimal(createAnimalRequest);
 
-            return Ok(animals);
-
-
-
+            return Created("", create);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
     }
+
+
+
+
 
 
 

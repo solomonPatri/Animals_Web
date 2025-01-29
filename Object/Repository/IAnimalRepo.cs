@@ -1,5 +1,5 @@
 ﻿using Animals_Web.Object;
-
+using Animals_Web.Object.Dtos;
 
 namespace Animals_Web.Object.Repository
 {
@@ -7,12 +7,7 @@ namespace Animals_Web.Object.Repository
     {
         Task<List<Animal>> GetAllAsync();
 
-        Task<List<Animal>> GetAnimalsUnderAge20();
-
-        Task<List<Animal>> GetUsernameNameStartB();
-
-        Task<List<Animal>> GetIdNrPar();
-
+        Task<CreateAnimalResponse> CreateAnimal(CreateAnimalRequest createAnimalRequest);
 
 
 
