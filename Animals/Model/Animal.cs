@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Policy;
 
 
-namespace Animals_Web.Object
+namespace Animals_Web.Animals
 {
 
     [Table("animals")]

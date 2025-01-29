@@ -1,10 +1,10 @@
 ﻿using Animals_Web.Data;
-using Animals_Web.Object.Dtos;
-using Animals_Web.Object.Repository;
+using Animals_Web.Animals.Dtos;
+using Animals_Web.Animals.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
-namespace Animals_Web.Object.Repository
+namespace Animals_Web.Animals.Repository
 {
     public class AnimalRepo : IAnimalRepo
     {

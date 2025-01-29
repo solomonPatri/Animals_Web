@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Animals_Web.Object.Dtos;
-using Animals_Web.Object;
+using Animals_Web.Animals.Dtos;
+using Animals_Web.Animals;
 
-namespace Animals_Web.Object.Mappers
+namespace Animals_Web.Animals.Mappers
 {
     public class AnimalMappingProfile: Profile
     {

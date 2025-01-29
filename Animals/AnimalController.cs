@@ -1,10 +1,10 @@
-﻿using Animals_Web.Object;
-using Animals_Web.Object.Dtos;
-using Animals_Web.Object.Repository;
+﻿using Animals_Web.Animals;
+using Animals_Web.Animals.Dtos;
+using Animals_Web.Animals.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Animals_Web.Object
+namespace Animals_Web.Animals
 {
     [ApiController]
     [Route("api/v1/[Controller]")]

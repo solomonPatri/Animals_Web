@@ -1,7 +1,7 @@
-﻿using Animals_Web.Object;
-using Animals_Web.Object.Dtos;
+﻿using Animals_Web.Animals;
+using Animals_Web.Animals.Dtos;
 
-namespace Animals_Web.Object.Repository
+namespace Animals_Web.Animals.Repository
 {
     public interface IAnimalRepo
     {

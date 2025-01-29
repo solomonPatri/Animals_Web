@@ -1,4 +1,4 @@
-﻿using Animals_Web.Object;
+﻿using Animals_Web.Animals;
 using Microsoft.EntityFrameworkCore;
 
 namespace Animals_Web.Data
