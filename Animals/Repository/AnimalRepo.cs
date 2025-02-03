@@ -28,7 +28,7 @@ namespace Animals_Web.Animals.Repository
 
 
 
-        public async Task<CreateAnimalResponse> CreateAnimal(CreateAnimalRequest createAnimalRequest)
+        public async Task<AnimalResponse> CreateAsync(AnimalRequest createAnimalRequest)
         {
 
             Animal animals = _mapper.Map<Animal>(createAnimalRequest);
@@ -37,7 +37,7 @@ namespace Animals_Web.Animals.Repository
 
             await _appDbContext.SaveChangesAsync();
 
-            CreateAnimalResponse response = _mapper.Map<CreateAnimalResponse>(animals);
+            AnimalResponse response = _mapper.Map<AnimalResponse>(animals);
 
             return response;
 
@@ -48,9 +48,61 @@ namespace Animals_Web.Animals.Repository
 
         }
 
+        public async Task<AnimalResponse> DeleteAsync(int id)
+        {
+
+            Animal animal = await _appDbContext.Animals.FindAsync(id);
+
+
+            AnimalResponse response = _mapper.Map<AnimalResponse>(animal);
+
+            _appDbContext.Remove(animal);
+
+            await _appDbContext.SaveChangesAsync();
+
+            return response;
+        }
+
+        public async Task<AnimalResponse> UpdateAsync(int id, AnimalUpdateRequest animal)
+        {
+            Animal anim= await _appDbContext.Animals.FindAsync(id);
+
+            if (animal.Name != null)
+            {
+                anim.Name = animal.Name;
+            }
+
+            if (animal.Age.HasValue)
+            {
+                anim.Age = animal.Age.Value;
+            }
+
+            if (animal.Country!=null)
+            {
+                anim.Country = animal.Country;
+            }
+
+            if (animal.Weight.HasValue)
+            {
+                anim.Weight = animal.Weight.Value;
+            }
+
+
+            _appDbContext.Animals.Update(anim);
+
+
+            await _appDbContext.SaveChangesAsync();
+
+
+            AnimalResponse update = _mapper.Map<AnimalResponse>(anim);
+
+
+            return update;
 
 
 
+
+        }
 
 
     }

@@ -9,9 +9,9 @@ namespace Animals_Web.Animals.Mappers
 
         public AnimalMappingProfile()
         {
-            CreateMap<CreateAnimalRequest, Animal>();
-            CreateMap<Animal, CreateAnimalResponse>();
-
+            CreateMap<AnimalRequest, Animal>();
+            CreateMap<Animal, AnimalResponse>();
+            CreateMap<AnimalResponse, AnimalUpdateRequest>();
         }
 
 

@@ -32,16 +32,58 @@ namespace Animals_Web.Animals
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<CreateAnimalResponse>> CreateAnimal([FromBody]CreateAnimalRequest createAnimalRequest)
+        public async Task<ActionResult<AnimalResponse>> CreateAnimal([FromBody]AnimalRequest createAnimalRequest)
         {
 
-            CreateAnimalResponse create = await _animalRepo.CreateAnimal(createAnimalRequest);
+            AnimalResponse create = await _animalRepo.CreateAsync(createAnimalRequest);
 
             return Created("", create);
         }
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult<AnimalResponse>> DeleteAnimal([FromRoute] int id)
+        {
 
-      
+            AnimalResponse response = await _animalRepo.DeleteAsync(id);
+
+
+
+            return Accepted("", response);
+
+        }
+
+        [HttpPut("edit/{id}")]
+        public async Task<ActionResult<AnimalResponse>> EditAnimal([FromRoute] int id, [FromBody] AnimalUpdateRequest animal)
+        {
+
+            AnimalResponse response = await _animalRepo.UpdateAsync(id, animal);
+
+
+
+            return Accepted("", response);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+
 
 
 

@@ -7,9 +7,12 @@ namespace Animals_Web.Animals.Repository
     {
         Task<List<Animal>> GetAllAsync();
 
-        Task<CreateAnimalResponse> CreateAnimal(CreateAnimalRequest createAnimalRequest);
+        Task<AnimalResponse> CreateAsync(AnimalRequest createAnimalRequest);
+
+        Task<AnimalResponse> DeleteAsync(int id);
 
 
+        Task<AnimalResponse> UpdateAsync(int id,AnimalUpdateRequest createAnimalRequest);
 
     }
 }
