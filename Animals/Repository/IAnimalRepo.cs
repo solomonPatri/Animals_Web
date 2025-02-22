@@ -5,7 +5,7 @@ namespace Animals_Web.Animals.Repository
 {
     public interface IAnimalRepo
     {
-        Task<List<Animal>> GetAllAsync();
+        Task<GetAllAnimalDto> GetAllAsync();
 
         Task<AnimalResponse> CreateAsync(AnimalRequest createAnimalRequest);
 
@@ -15,12 +15,12 @@ namespace Animals_Web.Animals.Repository
         Task<AnimalResponse> UpdateAsync(int id,AnimalUpdateRequest createAnimalRequest);
 
 
-        Task<AnimalResponse> FindByName(string Name);
+        Task<GetAllAnimalDto> FindByNameAsync(string Name);
 
-        Task<AnimalResponse> FindById(int id);
+        Task<AnimalResponse> FindByIdAsync(int id);
 
-        Task<GetAllAnimalNamesDto> GetAllAnimalNames();
-
+        Task<GetAllAnimalNamesDto> GetAllAnimalNamesAsync();
+        Task<AnimalResponse> FindByNameAnimalAsync(string Name);
 
 
 

@@ -2,7 +2,7 @@
 {
     public class GetAllAnimalDto
     {
-        public List<Animal> Animal { get; set; }
+        public List<AnimalResponse> Animal { get; set; }
 
 
 

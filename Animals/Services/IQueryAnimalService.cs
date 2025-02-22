@@ -4,16 +4,16 @@ namespace Animals_Web.Animals.Services
 {
     public interface IQueryAnimalService
     {
-        Task<List<Animal>> GetAllAsync();
+        Task<GetAllAnimalDto> GetAllAsync();
 
 
-        Task<AnimalResponse> FindByName(string Name);
+        Task<GetAllAnimalDto> FindByNameAsync(string Name);
 
-        Task<AnimalResponse> FindById(int id);
+        Task<AnimalResponse> FindByIdAsync(int id);
 
-        Task<GetAllAnimalNamesDto> GetAllAnimalNames();
+        Task<GetAllAnimalNamesDto> GetAllAnimalNamesAsync();
 
-
+       
 
 
 

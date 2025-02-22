@@ -27,17 +27,22 @@ namespace Animals_Web.Animals
 
         [HttpGet("all")]
 
-        public async Task<ActionResult<IEnumerable<Animal>>> GetAllAsync()
+        public async Task<ActionResult<GetAllAnimalDto>> GetAllAsync()
         {
-            var animals = await _query.GetAllAsync();
+            try
+            {
+                var animals = await _query.GetAllAsync();
 
-            return Ok(animals);
-
+                return Ok(animals);
+            }catch(AnimalNotFoundException nf)
+            {
+                return NotFound(nf.Message);
+            }
 
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<AnimalResponse>> CreateAnimal([FromBody]AnimalRequest createAnimalRequest)
+        public async Task<ActionResult<AnimalResponse>> CreateAnimalAsync([FromBody]AnimalRequest createAnimalRequest)
         {
             try
             {
@@ -52,7 +57,7 @@ namespace Animals_Web.Animals
             
          }
         [HttpDelete("delete/{id}")]
-        public async Task<ActionResult<AnimalResponse>> DeleteAnimal([FromRoute] int id)
+        public async Task<ActionResult<AnimalResponse>> DeleteAnimalAsync([FromRoute] int id)
         {
             try
             {
@@ -70,7 +75,7 @@ namespace Animals_Web.Animals
         }
 
         [HttpPut("edit/{id}")]
-        public async Task<ActionResult<AnimalResponse>> EditAnimal([FromRoute] int id, [FromBody] AnimalUpdateRequest animal)
+        public async Task<ActionResult<AnimalResponse>> EditAnimalAsync([FromRoute] int id, [FromBody] AnimalUpdateRequest animal)
         {
             try
             {
@@ -92,12 +97,12 @@ namespace Animals_Web.Animals
         [HttpGet("GetAllAnimalsNames")]
 
 
-        public async Task<ActionResult<GetAllAnimalNamesDto>> GetAllAnimalNames()
+        public async Task<ActionResult<GetAllAnimalNamesDto>> GetAllAnimalNamesAsync()
         {
 
             try
             {
-                GetAllAnimalNamesDto response = await this._query.GetAllAnimalNames();
+                GetAllAnimalNamesDto response = await this._query.GetAllAnimalNamesAsync();
                  return   Accepted("", response);
 
             }catch(AnimalNotFoundException nf)
@@ -112,14 +117,14 @@ namespace Animals_Web.Animals
 
         [HttpGet("find/Name/{name}")]
 
-        public async Task<ActionResult<AnimalResponse>> GetAnimalByName([FromRoute] string name)
+        public async Task<ActionResult<GetAllAnimalDto>> GetAnimalByNameAsync([FromRoute] string name)
         {
 
 
             try
             {
 
-                AnimalResponse response = await this._query.FindByName(name);
+                GetAllAnimalDto response = await this._query.FindByNameAsync(name);
 
                 return Accepted("", response);
 
@@ -141,11 +146,11 @@ namespace Animals_Web.Animals
 
         [HttpGet("find/Id/{id}")]
 
-        public async Task<ActionResult<AnimalResponse>> GetById([FromRoute] int id)
+        public async Task<ActionResult<AnimalResponse>> GetByIdAsync([FromRoute] int id)
         {
             try
             {
-                AnimalResponse response = await this._query.FindById(id);
+                AnimalResponse response = await this._query.FindByIdAsync(id);
 
                 return Accepted("", response);
             }catch(AnimalNotFoundException nf)

@@ -23,7 +23,7 @@ namespace Animals_Web.Animals.Services
 
         public async Task<AnimalResponse> CreateAsync(AnimalRequest createAnimalRequest)
         {
-            AnimalResponse animalexist = await this._repo.FindByName(createAnimalRequest.Name);
+            AnimalResponse animalexist = await this._repo.FindByNameAnimalAsync(createAnimalRequest.Name);
 
             if(animalexist == null)
             {
@@ -43,7 +43,7 @@ namespace Animals_Web.Animals.Services
 
        public async  Task<AnimalResponse> DeleteAsync(int id)
         {
-            AnimalResponse animalexist = await this._repo.FindById(id);
+            AnimalResponse animalexist = await this._repo.FindByIdAsync(id);
 
             if(animalexist!= null)
             {
@@ -62,7 +62,7 @@ namespace Animals_Web.Animals.Services
         public async Task<AnimalResponse> UpdateAsync(int id, AnimalUpdateRequest createAnimalRequest)
         {
 
-            AnimalResponse update = await this._repo.FindById(id);
+            AnimalResponse update = await this._repo.FindByIdAsync(id);
 
             if (update != null)
             {

@@ -12,6 +12,11 @@ namespace Animals_Web.Animals.Mappers
             CreateMap<AnimalRequest, Animal>();
             CreateMap<Animal, AnimalResponse>();
             CreateMap<AnimalResponse, AnimalUpdateRequest>();
+            CreateMap<AnimalResponse, GetAllAnimalDto>();
+
+
+
+
         }
 
 

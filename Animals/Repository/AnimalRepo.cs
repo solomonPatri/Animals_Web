@@ -3,6 +3,7 @@ using Animals_Web.Animals.Dtos;
 using Animals_Web.Animals.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Animals_Web.Animals;
 
 
 namespace Animals_Web.Animals.Repository
@@ -19,11 +20,17 @@ namespace Animals_Web.Animals.Repository
 
         }
 
-        public async Task<List<Animal>> GetAllAsync()
+        public async Task<GetAllAnimalDto> GetAllAsync()
         {
+            IList<Animal> data = await _appDbContext.Animals.ToListAsync();
 
-            return await _appDbContext.Animals.ToListAsync();
+            var animalResponses = data.Select(m => _mapper.Map<AnimalResponse>(m)).ToList();
 
+            GetAllAnimalDto response = new GetAllAnimalDto();
+
+            response.Animal = animalResponses;
+
+            return response;
 
         }
 
@@ -106,19 +113,20 @@ namespace Animals_Web.Animals.Repository
         }
 
 
-        public async Task<AnimalResponse> FindByName(string names)
+        public async Task<GetAllAnimalDto> FindByNameAsync(string names)
         {
+            var animals = await _appDbContext.Animals.Where(n => n.Name.Equals(names)).ToListAsync();
 
-            Animal animal = await _appDbContext.Animals.FirstOrDefaultAsync(s => s.Name.Equals(names));
+            var animalsresponse = animals.Select(s => _mapper.Map<AnimalResponse>(s)).ToList();
 
-            AnimalResponse response = _mapper.Map<AnimalResponse>(animal);
-
+            GetAllAnimalDto response = new GetAllAnimalDto();
+            response.Animal = animalsresponse;
             return response;
-
+           
 
         }
 
-        public async Task<AnimalResponse> FindById(int id)
+        public async Task<AnimalResponse> FindByIdAsync(int id)
         {
 
             Animal animal = await _appDbContext.Animals.FindAsync(id);
@@ -131,7 +139,7 @@ namespace Animals_Web.Animals.Repository
 
         }
 
-        public async Task<GetAllAnimalNamesDto> GetAllAnimalNames()
+        public async Task<GetAllAnimalNamesDto> GetAllAnimalNamesAsync()
         {
             List<string> names = await _appDbContext.Animals.Select(n => n.Name).ToListAsync();
 
@@ -145,7 +153,17 @@ namespace Animals_Web.Animals.Repository
         }
 
 
+        public async Task<AnimalResponse> FindByNameAnimalAsync(string names)
+        {
 
+            Animal animal = await _appDbContext.Animals.FirstOrDefaultAsync(s => s.Name.Equals(names));
+
+            AnimalResponse response = _mapper.Map<AnimalResponse>(animal);
+
+            return response;
+
+
+        }
 
 
 

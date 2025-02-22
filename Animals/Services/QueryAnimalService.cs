@@ -16,18 +16,23 @@ namespace Animals_Web.Animals.Services
 
         }
 
-        public async Task<List<Animal>> GetAllAsync()
+        public async Task<GetAllAnimalDto> GetAllAsync()
         {
+            GetAllAnimalDto response = await this._repo.GetAllAsync();
+            if(response != null)
+            {
+                return response;
+            }
+            throw new AnimalNotFoundException();
 
-            return await this._repo.GetAllAsync();
 
 
         }
 
 
-        public async  Task<AnimalResponse> FindByName(string Name)
+        public async  Task<GetAllAnimalDto> FindByNameAsync(string Name)
         {
-            AnimalResponse response = await this._repo.FindByName(Name);
+            GetAllAnimalDto response = await this._repo.FindByNameAsync(Name);
             if(response!= null)
             {
                 return response;
@@ -43,9 +48,9 @@ namespace Animals_Web.Animals.Services
 
         }
 
-        public  async Task<AnimalResponse> FindById(int id)
+        public  async Task<AnimalResponse> FindByIdAsync(int id)
         {
-            AnimalResponse response = await this._repo.FindById(id);
+            AnimalResponse response = await this._repo.FindByIdAsync(id);
             if(response!= null)
             {
                 return response;
@@ -60,9 +65,9 @@ namespace Animals_Web.Animals.Services
 
         }
 
-        public async Task<GetAllAnimalNamesDto> GetAllAnimalNames()
+        public async Task<GetAllAnimalNamesDto> GetAllAnimalNamesAsync()
         {
-            GetAllAnimalNamesDto response = await this._repo.GetAllAnimalNames();
+            GetAllAnimalNamesDto response = await this._repo.GetAllAnimalNamesAsync();
 
             if(response != null)
             {
