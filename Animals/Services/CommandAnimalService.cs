@@ -25,7 +25,7 @@ namespace Animals_Web.Animals.Services
         {
             AnimalResponse animalexist = await this._repo.FindByName(createAnimalRequest.Name);
 
-            if(animalexist != null)
+            if(animalexist == null)
             {
                 AnimalResponse response = await this._repo.CreateAsync(createAnimalRequest);
                 return response;
