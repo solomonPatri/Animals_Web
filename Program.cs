@@ -7,6 +7,7 @@ using Animals_Web.Data;
 using System.Net.WebSockets;
 using Animals_Web.Animals.Repository;
 using Animals_Web.Data;
+using Animals_Web.Animals.Services;
 
 public class Program
 {
@@ -33,6 +34,9 @@ public class Program
 
 
         builder.Services.AddScoped<IAnimalRepo, AnimalRepo>();
+        builder.Services.AddScoped<ICommandAnimalService, CommandAnimalService>();
+        builder.Services.AddScoped<IQueryAnimalService, QueryAnimalService>();
+
 
         builder.Services.AddFluentMigratorCore()
             .ConfigureRunner(rb => rb

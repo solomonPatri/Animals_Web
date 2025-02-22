@@ -14,5 +14,17 @@ namespace Animals_Web.Animals.Repository
 
         Task<AnimalResponse> UpdateAsync(int id,AnimalUpdateRequest createAnimalRequest);
 
+
+        Task<AnimalResponse> FindByName(string Name);
+
+        Task<AnimalResponse> FindById(int id);
+
+        Task<GetAllAnimalNamesDto> GetAllAnimalNames();
+
+
+
+
+
+
     }
 }

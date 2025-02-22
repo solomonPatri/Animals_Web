@@ -4,6 +4,7 @@ using Animals_Web.Animals.Repository;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Animals_Web.Animals.Repository
 {
     public class AnimalRepo : IAnimalRepo
@@ -103,6 +104,63 @@ namespace Animals_Web.Animals.Repository
 
 
         }
+
+
+        public async Task<AnimalResponse> FindByName(string names)
+        {
+
+            Animal animal = await _appDbContext.Animals.FirstOrDefaultAsync(s => s.Name.Equals(names));
+
+            AnimalResponse response = _mapper.Map<AnimalResponse>(animal);
+
+            return response;
+
+
+        }
+
+        public async Task<AnimalResponse> FindById(int id)
+        {
+
+            Animal animal = await _appDbContext.Animals.FindAsync(id);
+
+            AnimalResponse response = _mapper.Map<AnimalResponse>(animal);
+
+            return response;
+
+
+
+        }
+
+        public async Task<GetAllAnimalNamesDto> GetAllAnimalNames()
+        {
+            List<string> names = await _appDbContext.Animals.Select(n => n.Name).ToListAsync();
+
+            GetAllAnimalNamesDto response = new GetAllAnimalNamesDto();
+
+            response.Names = names;
+
+            return response;
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
