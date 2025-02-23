@@ -31,7 +31,7 @@ namespace Animals_Web.Animals
         {
             try
             {
-                var animals = await _query.GetAllAsync();
+                GetAllAnimalDto animals = await _query.GetAllAsync();
 
                 return Ok(animals);
             }catch(AnimalNotFoundException nf)
